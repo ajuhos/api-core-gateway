@@ -1,0 +1,27 @@
+{
+  "name": "api-core-gateway",
+  "version": "0.7.1",
+  "description": "Gateway for API Core.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajuhos/api-core-gateway.git"
+  },
+  "author": "We Are Break <ajuhos@we-are-break.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajuhos/api-core-gateway/issues"
+  },
+  "homepage": "https://github.com/ajuhos/api-core#readme",
+  "dependencies": {
+    "@types/node": "^9.4.7",
+    "api-core": "0.7.1",
+    "front-door": "ajuhos/front-door#2322c56",
+    "request-promise-native": "^1.0.5"
+  }
+}
