@@ -1,7 +1,9 @@
-import { ForwardRule, Target, TargetList, HttpServer, HttpsServer } from "front-door";
-import { Api, ApiEdgeDefinition, ExternalApiEdge } from "api-core";
+import { Rule, HttpServer, HttpsServer } from "front-door";
+import { Api } from "api-core";
 import {ApiGatewayForwardRule} from "./ApiGatewayForwardRule";
 import {ApiGatewayAction} from "./ApiGatewayAction";
+import {IncomingMessage, OutgoingMessage} from "http";
+import {ExternalForwardRule} from "./ExternalForwardRule";
 const request = require('request-promise-native');
 
 export interface ApiGatewayOptions {
@@ -30,6 +32,8 @@ export class ApiGateway {
 
     private httpServer: any;
     private httpsServer: any;
+    private fallbackRule: ExternalForwardRule|null;
+    private additionalRules: Rule[] = [];
 
     private ruleSet: ApiGatewayForwardRule[];
     private readonly actions: ApiGatewayAction[];
@@ -60,6 +64,14 @@ export class ApiGateway {
         return this
     }
 
+    fallback(handler: (req: OutgoingMessage, res: IncomingMessage) => void) {
+        this.fallbackRule = new ExternalForwardRule(handler)
+    }
+
+    rule(rule: Rule) {
+        this.additionalRules.push(rule)
+    }
+
     api = async (uri: string) => {
         const apiInfo = await request({ uri: uri + '/.api-core', json: true });
         const api = Api.fromMetadata(apiInfo);
@@ -80,6 +92,16 @@ export class ApiGateway {
             remainingCallbacks--;
             if(remainingCallbacks === 0) callback()
         };
+
+        if(this.additionalRules.length) {
+            this.ruleSet.push(...this.additionalRules as any[]);
+            this.additionalRules = [];
+        }
+
+        if(this.fallbackRule) {
+            this.ruleSet.push(this.fallbackRule as any);
+            this.fallbackRule = null;
+        }
 
         if(this.httpServer) {
             remainingCallbacks++;
