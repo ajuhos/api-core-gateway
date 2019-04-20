@@ -74,7 +74,7 @@ export class ApiGateway {
 
     api = async (uri: string) => {
         const apiInfo = await request({ uri: uri + '/.api-core', json: true });
-        const api = Api.fromMetadata(apiInfo);
+        const api = await Api.fromMetadata(apiInfo);
 
         const rule = new ApiGatewayForwardRule(
             api, uri,

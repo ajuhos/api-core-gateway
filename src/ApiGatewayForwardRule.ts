@@ -47,7 +47,7 @@ export class ApiGatewayForwardRule extends ForwardRule {
         const route = parsedUrl.pathname.split('/').filter((a: string) => a);
 
         try {
-            const request = this.api.parseRequest(route);
+            const request = await this.api.parseRequest(route);
 
             if (!request.path.segments.length) {
                 sendError(req, res, 404, 'Not Found');
