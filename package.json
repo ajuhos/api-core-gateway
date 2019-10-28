@@ -1,6 +1,6 @@
 {
   "name": "api-core-gateway",
-  "version": "0.23.2",
+  "version": "0.23.3",
   "description": "Gateway for API Core.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ajuhos/api-core#readme",
   "dependencies": {
     "@types/node": "^9.4.7",
-    "api-core": "0.23.2",
+    "api-core": "0.23.3",
     "front-door": "ajuhos/front-door#2322c56",
     "request-promise-native": "^1.0.5"
   }
