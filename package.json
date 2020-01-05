@@ -1,6 +1,6 @@
 {
   "name": "api-core-gateway",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "description": "Gateway for API Core.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
