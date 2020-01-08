@@ -15,10 +15,10 @@ accepts@^1.3.3:
     mime-types "~2.1.18"
     negotiator "0.6.1"
 
-api-core@0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/api-core/-/api-core-0.24.0.tgz#89687c05dd8d54e969219ff69f6f7e388b06daea"
-  integrity sha512-Ih11VYW0+n5MwUEyx4UzoIl1KbqeFwxJDN0Da2oIgHEoFPVmmv7cu7SaRGSluQuu/QbfaIuLyNC5XPSoHXW2zw==
+api-core@0.24.3:
+  version "0.24.3"
+  resolved "https://registry.yarnpkg.com/api-core/-/api-core-0.24.3.tgz#5c04b7167c7800fc3f6a54d165b1bfb5145ebbf0"
+  integrity sha512-QUr53NQcjIptZzq7kTLUUwVHu1Ev/boMEJSulIb+/8+tKlb0iIPgiaPjNw6ilXl+vgYorqDxOXRwYmxQH395Nw==
   dependencies:
     debug "^4.1.1"
     deep-keys "^0.3.0"
